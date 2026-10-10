@@ -38,9 +38,14 @@ export function PortfolioGallery() {
   const activeProject = projects.find(project => project.id === selected)
   useEffect(() => {
     if (!activeProject) return
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
     const closeOnEscape = (event: KeyboardEvent) => { if (event.key === 'Escape') setSelected(null) }
     window.addEventListener('keydown', closeOnEscape)
-    return () => window.removeEventListener('keydown', closeOnEscape)
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', closeOnEscape)
+    }
   }, [activeProject])
   return <section className="section portfolio scroll-reveal" id="projetos"><div className="section-kicker"><span>TRABALHOS</span><span>PEÇAS DE DESIGN GRÁFICO</span></div>
     <div className="portfolio__heading"><div><h2>Projetos que<br/><em>falam por si.</em></h2><p>Uma seleção de trabalhos, ideias e soluções visuais desenvolvidas para comunicar com intenção.</p></div><span className="portfolio__count">SELEÇÃO<br/>VISUAL</span></div>
