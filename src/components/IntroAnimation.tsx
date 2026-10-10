@@ -18,7 +18,8 @@ export function IntroAnimation() {
   if (!show) return null
   const skip = () => { sessionStorage.setItem('wesley-intro-seen', '1'); setShow(false) }
   return <div className="intro" role="status" aria-label="Apresentação Wesley Silva">
-    <div className="intro__line" /><BrandMark />
+    <BrandMark />
+    <div className="intro__line" />
     <span className="intro__caption">THE CREATIVE DIMENSION</span>
     <Button variant="ghost" size="small" onClick={skip}>Pular introdução ↗</Button>
   </div>
